@@ -191,17 +191,20 @@
     <section id="feature-extraction">
       <h2>What is Feature Extraction?</h2>
       <p>
-        When a computer takes in an image, it is essentially receiving a pile of unstructured data in the form of pixels. Feature extraction transforms this data into meaningful features and objects that computers can analyze and assign meaning to.
+        When a computer takes in an image, it is essentially receiving a pile of unstructured data in the form of pixels. Feature extraction transforms this data into meaningful features and objects that computers can analyze and assign meaning to. 
       </p>
       <p>
-        While this post focuses on feature extraction from images, it is important to note that feature extraction can also be applied to other forms of quantitative data, including text, and is not limited to images.
-      </p>
-      <p>
-        A few common image-based applications of feature extraction include autonomous vehicle navigation, extracting features from EEG or MRI data to help physicians detect diseases, and detecting facial features for Face ID on a phone.
-      </p>
+        While this post focuses on feature extraction from images, it is important to note that feature extraction can also be applied to other forms of quantitative data or even text and is not limited to images. A few common image-based applications of feature extraction include autonomous vehicle navigation, extracting features from EEG or MRI data to help physicians detect diseases, and detecting facial features for Face ID on a phone.
+      </p>  
       <div class="callout">
         <strong>Big question:</strong> How do computers actually detect meaningful features in an image?
       </div>
+      <p>
+        The bigger question, however, is how do computers know how to do this? How exactly do they detect these features? There are a variety of methods used for feature extraction including edge detection, corner detection, blob detection, and texture analysis. Edge detection identifies boundaries within an image to detect objects. Corner detection identifies areas in an image where the intensity drastically changes in multiple directions. This indicates the presence of corners or boundaries between edges which can be valuable for image alignment or object tracking tasks. Blob detection detects regions in an image that exhibit significant differences in properties such as brightness, color, or texture compared to the surrounding regions. Regions with these significant differences are called “blobs” and detecting them can be useful for tasks like object recognition or image segmentation. Texture analysis quantifies and characterizes the spatial arrangement of pixel intensities in an image. This can be a key component for segmentation and recognition tasks. 
+      </p>
+      <p>
+        Of these methods, edge detection plays a particularly important role in feature extraction by simplifying images and retaining only key structural information. This allows subsequent tasks, such as object recognition or image segmentation, to be performed more efficiently, since the computer no longer needs to process every pixel in the image.
+      </p>
     </section>
 
     <section id="edge-detection">
