@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.2">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Teaching Computers to See&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>* {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-sizing: border-box;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: Georgia, "Times New Roman", serif;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.7;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #1f2933;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #f7f7f4;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>header {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: linear-gradient(135deg, #101820, #2f4858);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 80px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>header h1 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 3rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 15px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.1;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>header p {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width: 700px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 auto;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.15rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #e5e7eb;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>nav {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: white;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 1px solid #ddd;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 15px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>position: sticky;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>z-index: 10;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>nav a {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #2f4858;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.95rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>nav a:hover {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: underline;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>main {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width: 900px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 auto;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 45px 22px 80px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: white;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>section {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 55px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>h2 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #101820;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 3px solid #d6e4e5;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding-bottom: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>h3 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.35rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #2f4858;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>p {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.05rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.callout {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #edf6f7;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-left: 5px solid #2f4858;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 18px 22px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 25px 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.image-placeholder {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 2px dashed #a8b8bd;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #f2f5f5;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #5b6b73;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 45px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 25px 0 10px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-style: italic;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.caption {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #5b6b73;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.comparison-grid {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 25px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.card {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid #d9e1e2;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #fbfbfa;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.card h3 {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>footer {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 30px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #6b7280;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9rem;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 650px) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>header h1 {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>font-size: 2.25rem;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>nav {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>position: static;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>nav a {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>display: inline-block;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>margin: 6px 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>main {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>padding-top: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;header&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Teaching Computers to See&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;A look at feature extraction, edge detection, and how different computer vision methods compare.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;a href="#feature-extraction"&gt;Feature Extraction&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;a href="#edge-detection"&gt;Edge Detection&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;a href="#methods"&gt;Methods&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;a href="#applications"&gt;Applications&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;a href="#comparison"&gt;Comparison&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;a href="#takeaways"&gt;Takeaways&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/nav&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;main&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="intro"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>When you look at a picture, what do you notice first? Do bright colors or patterns draw your attention? Do your eyes go straight to the center, or do you take in the surroundings first?</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Analyzing what we see as humans is an almost automatic process. We look at something, take a few seconds to analyze, but very quickly determine what we are looking at and understand its meaning almost instantly.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>As technology has advanced, computers have started to mimic this ability, taking in images, analyzing them, and assigning meaning in a way that begins to resemble human vision. However, this process is nowhere near as automatic for computers as it is for humans. Several computational methods give computers the ability to analyze images or scenes. One key method is feature extraction.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="feature-extraction"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;What is Feature Extraction?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>When a computer takes in an image, it is essentially receiving a pile of unstructured data in the form of pixels. Feature extraction transforms this data into meaningful features and objects that computers can analyze and assign meaning to.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>While this post focuses on feature extraction from images, it is important to note that feature extraction can also be applied to other forms of quantitative data, including text, and is not limited to images.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>A few common image-based applications of feature extraction include autonomous vehicle navigation, extracting features from EEG or MRI data to help physicians detect diseases, and detecting facial features for Face ID on a phone.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="callout"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;strong&gt;Big question:&lt;/strong&gt; How do computers actually detect meaningful features in an image?</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="edge-detection"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Edge Detection: Background, Purpose, and Value&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>There are a variety of methods used for feature extraction, including edge detection, corner detection, blob detection, and texture analysis. Among these, edge detection is one of the most fundamental and widely used approaches.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Edge detection works by identifying areas in an image where there are sharp changes in intensity. These changes often correspond to object boundaries, shapes, or important structural features.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="image-placeholder"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Add an example image here showing an original image next to its edge-detected version.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="caption"&gt;Figure 1. Placeholder for an edge detection example.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="methods"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Edge Detection Methods&lt;/h2&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Sobel Edge Detection&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>The Sobel method detects edges by measuring changes in image intensity in the horizontal and vertical directions. It is simple, fast, and useful for identifying broad edge structures.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="image-placeholder"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Add Sobel output image here.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Canny Edge Detection&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>The Canny method uses multiple steps to reduce noise, identify intensity gradients, and keep only the strongest edges. This often produces cleaner and more defined edge maps than simpler methods.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="image-placeholder"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Add Canny output image here.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;Random Forest Edge Detection&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>A Random Forest approach uses machine learning to classify pixels or image regions based on learned features. Unlike traditional edge detection methods, it can be trained to identify edges based on patterns in example data.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="image-placeholder"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Add Random Forest output image here.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="applications"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Current Applications of Edge Detection&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Edge detection is used in many computer vision applications, including medical image analysis, autonomous driving, object recognition, facial detection, and quality control in manufacturing.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>In each of these applications, edge detection helps reduce complex visual data into simpler structural information that can be used for further analysis.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="comparison"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Method Comparison and Analysis&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Each method has its own strengths and weaknesses. Comparing Sobel, Canny, and Random Forest edge detection helps show how different approaches perform across different types of images.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="comparison-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Sobel&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;&lt;strong&gt;Strength:&lt;/strong&gt; Simple and fast.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;&lt;strong&gt;Limitation:&lt;/strong&gt; More sensitive to noise and less precise.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Canny&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;&lt;strong&gt;Strength:&lt;/strong&gt; Produces cleaner and more defined edges.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;&lt;strong&gt;Limitation:&lt;/strong&gt; Requires parameter tuning.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Random Forest&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;&lt;strong&gt;Strength:&lt;/strong&gt; Can learn patterns from data.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;&lt;strong&gt;Limitation:&lt;/strong&gt; Requires training data and more computation.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="ideal-method"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Is There an Ideal Method?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>There is no single ideal edge detection method for every situation. The best method depends on the type of image, the amount of noise, the level of detail needed, and the purpose of the analysis.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Traditional methods like Sobel and Canny are useful when speed and simplicity are important, while machine learning approaches may be better when the task requires adaptation to complex image patterns.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="takeaways"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Key Takeaways&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Feature extraction allows computers to transform raw image data into meaningful information. Edge detection is one important feature extraction method because it helps computers identify boundaries, shapes, and structures within images.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>By comparing Sobel, Canny, and Random Forest edge detection, we can better understand how different computer vision methods approach the challenge of teaching computers to see.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;Final Computer Vision Project Blog Post | Makenzie Jones&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
