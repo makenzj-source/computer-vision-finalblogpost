@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teaching Computers to See</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.7;
+      color: #1f2933;
+      background: #f7f7f4;
+    }
+
+    header {
+      background: linear-gradient(135deg, #101820, #2f4858);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0 0 15px;
+      line-height: 1.1;
+    }
+
+    header p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.15rem;
+      color: #e5e7eb;
+    }
+
+    nav {
+      background: white;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 12px;
+      color: #2f4858;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 45px 22px 80px;
+      background: white;
+    }
+
+    section {
+      margin-bottom: 55px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #101820;
+      margin-bottom: 15px;
+      border-bottom: 3px solid #d6e4e5;
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      font-size: 1.35rem;
+      color: #2f4858;
+      margin-top: 30px;
+    }
+
+    p {
+      font-size: 1.05rem;
+      margin-bottom: 18px;
+    }
+
+    .callout {
+      background: #edf6f7;
+      border-left: 5px solid #2f4858;
+      padding: 18px 22px;
+      margin: 25px 0;
+      border-radius: 8px;
+    }
+
+    .image-placeholder {
+      border: 2px dashed #a8b8bd;
+      background: #f2f5f5;
+      color: #5b6b73;
+      padding: 45px 20px;
+      text-align: center;
+      border-radius: 12px;
+      margin: 25px 0 10px;
+      font-style: italic;
+    }
+
+    .caption {
+      font-size: 0.9rem;
+      color: #5b6b73;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+      margin-top: 25px;
+    }
+
+    .card {
+      border: 1px solid #d9e1e2;
+      border-radius: 12px;
+      padding: 20px;
+      background: #fbfbfa;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 650px) {
+      header h1 {
+        font-size: 2.25rem;
+      }
+
+      nav {
+        position: static;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 6px 8px;
+      }
+
+      main {
+        padding-top: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Teaching Computers to See</h1>
+    <p>A look at feature extraction, edge detection, and how different computer vision methods compare.</p>
+  </header>
+
+  <nav>
+    <a href="#feature-extraction">Feature Extraction</a>
+    <a href="#edge-detection">Edge Detection</a>
+    <a href="#methods">Methods</a>
+    <a href="#applications">Applications</a>
+    <a href="#comparison">Comparison</a>
+    <a href="#takeaways">Takeaways</a>
+  </nav>
+
+  <main>
+    <section id="intro">
+      <p>
+        When you look at a picture, what do you notice first? Do bright colors or patterns draw your attention? Do your eyes go straight to the center, or do you take in the surroundings first?
+      </p>
+      <p>
+        Analyzing what we see as humans is an almost automatic process. We look at something, take a few seconds to analyze, but very quickly determine what we are looking at and understand its meaning almost instantly.
+      </p>
+      <p>
+        As technology has advanced, computers have started to mimic this ability, taking in images, analyzing them, and assigning meaning in a way that begins to resemble human vision. However, this process is nowhere near as automatic for computers as it is for humans. Several computational methods give computers the ability to analyze images or scenes. One key method is feature extraction.
+      </p>
+    </section>
+
+    <section id="feature-extraction">
+      <h2>What is Feature Extraction?</h2>
+      <p>
+        When a computer takes in an image, it is essentially receiving a pile of unstructured data in the form of pixels. Feature extraction transforms this data into meaningful features and objects that computers can analyze and assign meaning to.
+      </p>
+      <p>
+        While this post focuses on feature extraction from images, it is important to note that feature extraction can also be applied to other forms of quantitative data, including text, and is not limited to images.
+      </p>
+      <p>
+        A few common image-based applications of feature extraction include autonomous vehicle navigation, extracting features from EEG or MRI data to help physicians detect diseases, and detecting facial features for Face ID on a phone.
+      </p>
+      <div class="callout">
+        <strong>Big question:</strong> How do computers actually detect meaningful features in an image?
+      </div>
+    </section>
+
+    <section id="edge-detection">
+      <h2>Edge Detection: Background, Purpose, and Value</h2>
+      <p>
+        There are a variety of methods used for feature extraction, including edge detection, corner detection, blob detection, and texture analysis. Among these, edge detection is one of the most fundamental and widely used approaches.
+      </p>
+      <p>
+        Edge detection works by identifying areas in an image where there are sharp changes in intensity. These changes often correspond to object boundaries, shapes, or important structural features.
+      </p>
+      <div class="image-placeholder">
+        Add an example image here showing an original image next to its edge-detected version.
+      </div>
+      <p class="caption">Figure 1. Placeholder for an edge detection example.</p>
+    </section>
+
+    <section id="methods">
+      <h2>Edge Detection Methods</h2>
+
+      <h3>Sobel Edge Detection</h3>
+      <p>
+        The Sobel method detects edges by measuring changes in image intensity in the horizontal and vertical directions. It is simple, fast, and useful for identifying broad edge structures.
+      </p>
+      <div class="image-placeholder">
+        Add Sobel output image here.
+      </div>
+
+      <h3>Canny Edge Detection</h3>
+      <p>
+        The Canny method uses multiple steps to reduce noise, identify intensity gradients, and keep only the strongest edges. This often produces cleaner and more defined edge maps than simpler methods.
+      </p>
+      <div class="image-placeholder">
+        Add Canny output image here.
+      </div>
+
+      <h3>Random Forest Edge Detection</h3>
+      <p>
+        A Random Forest approach uses machine learning to classify pixels or image regions based on learned features. Unlike traditional edge detection methods, it can be trained to identify edges based on patterns in example data.
+      </p>
+      <div class="image-placeholder">
+        Add Random Forest output image here.
+      </div>
+    </section>
+
+    <section id="applications">
+      <h2>Current Applications of Edge Detection</h2>
+      <p>
+        Edge detection is used in many computer vision applications, including medical image analysis, autonomous driving, object recognition, facial detection, and quality control in manufacturing.
+      </p>
+      <p>
+        In each of these applications, edge detection helps reduce complex visual data into simpler structural information that can be used for further analysis.
+      </p>
+    </section>
+
+    <section id="comparison">
+      <h2>Method Comparison and Analysis</h2>
+      <p>
+        Each method has its own strengths and weaknesses. Comparing Sobel, Canny, and Random Forest edge detection helps show how different approaches perform across different types of images.
+      </p>
+
+      <div class="comparison-grid">
+        <div class="card">
+          <h3>Sobel</h3>
+          <p><strong>Strength:</strong> Simple and fast.</p>
+          <p><strong>Limitation:</strong> More sensitive to noise and less precise.</p>
+        </div>
+        <div class="card">
+          <h3>Canny</h3>
+          <p><strong>Strength:</strong> Produces cleaner and more defined edges.</p>
+          <p><strong>Limitation:</strong> Requires parameter tuning.</p>
+        </div>
+        <div class="card">
+          <h3>Random Forest</h3>
+          <p><strong>Strength:</strong> Can learn patterns from data.</p>
+          <p><strong>Limitation:</strong> Requires training data and more computation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ideal-method">
+      <h2>Is There an Ideal Method?</h2>
+      <p>
+        There is no single ideal edge detection method for every situation. The best method depends on the type of image, the amount of noise, the level of detail needed, and the purpose of the analysis.
+      </p>
+      <p>
+        Traditional methods like Sobel and Canny are useful when speed and simplicity are important, while machine learning approaches may be better when the task requires adaptation to complex image patterns.
+      </p>
+    </section>
+
+    <section id="takeaways">
+      <h2>Key Takeaways</h2>
+      <p>
+        Feature extraction allows computers to transform raw image data into meaningful information. Edge detection is one important feature extraction method because it helps computers identify boundaries, shapes, and structures within images.
+      </p>
+      <p>
+        By comparing Sobel, Canny, and Random Forest edge detection, we can better understand how different computer vision methods approach the challenge of teaching computers to see.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Final Computer Vision Project Blog Post | Makenzie Jones</p>
+  </footer>
+</body>
+</html>
