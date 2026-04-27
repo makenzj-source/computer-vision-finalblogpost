@@ -260,10 +260,6 @@
       <p>
         The practical value of edge detection becomes apparent across a wide range of engineering and scientific domains. Industrial measurement systems use edges to extract dimensions with sub pixel accuracy, autonomous vehicles track lane markers and obstacle outlines from edge maps that have already suppressed irrelevant road texture, and medical imaging relies on clean organ and lesion contours for both quantification and visualization. Despite these broad successes, the task continues to involve stubborn trade offs. Any real image presents noise, low contrast, and uneven illumination, meaning that no single sensitivity setting will recover all genuine edges while rejecting all false ones. It is precisely this tension that has driven the evolution of edge detection methods from simple gradient operators to carefully staged algorithms like the Canny detector, which addresses the problem through a sequence of steps including non maximum suppression and hysteresis. Understanding this background makes clear why such design decisions, which can appear elaborate in isolation, arose from the practical demands of working with natural imagery.
       </p>
-      <div class="image-placeholder">
-        Add an example image here showing an original image next to its edge-detected version.
-      </div>
-      <p class="caption">Figure 1. Placeholder for an edge detection example.</p>
     </section>
 
     <section id="methods">
@@ -284,9 +280,7 @@
         <li><strong>Edge tracking by hysteresis.</strong> Weak pixels are retained only if they are connected—directly or through a chain of other weak pixels—to a strong edge pixel. Isolated weak fragments, which often arise from noise, are eliminated. This connectivity logic is what truly distinguishes Canny from simpler threshold‑based methods, allowing the algorithm to extend faint but genuine edge segments while clearing away scattered false positives.</li>
       </ul>
 
-      <div class="image-placeholder">
-        Add Canny output image here.
-      </div>
+      
 
       <!-- ── Sobel ── -->
       <h3>Sobel Edge Detection</h3>
@@ -302,9 +296,7 @@
         <li><strong>Threshold to extract edges.</strong> A threshold is applied to the magnitude image so that only pixels with sufficiently strong responses are marked as edges. Because the Sobel kernel itself introduces a small amount of perpendicular smoothing, the resulting edges are typically several pixels wide. A separate thinning operation must be applied if single‑pixel edges are desired. The main difficulty in practice is that on noisy images it is often impossible to find a single threshold that preserves all genuine edges while eliminating all noise responses—a limitation Canny was specifically designed to address.</li>
       </ul>
 
-      <div class="image-placeholder">
-        Add Sobel output image here.
-      </div>
+      
 
       <!-- ── Random Forest ── -->
       <h3>Random Forest</h3>
@@ -323,9 +315,7 @@
         <li><strong>Aggregate the predictions.</strong> For classification tasks, the ensemble's output is the majority vote among all trees. For regression, it is the arithmetic mean of the individual tree predictions. This aggregation is what reduces variance and yields a model that is generally more accurate and more stable than any single decision tree.</li>
       </ul>
 
-      <div class="image-placeholder">
-        Add Random Forest output image here.
-      </div>
+    
     </section>
 
     <section id="applications">
