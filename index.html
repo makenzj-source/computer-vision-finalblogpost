@@ -334,6 +334,26 @@
     <section id="comparison">
   <h2>Method Comparison and Analysis</h2>
 
+  <section id="experimental-setup">
+  <h2>Experimental Setup</h2>
+
+  <p>
+    To evaluate edge detection performance, we applied Canny, Sobel, and Random Forest-based edge detection models to a variety of images from three different application types: Facial Recognition, Medical Imaging, and Lane detection.
+  </p>
+
+  <p>
+    Three different datasets with images and pre-generated segmentation masks were collected for the needed applications. The segmentation masks provided in these datasets were fully filled masks, meaning the entire region of the object was filled in. These segmentation masks were used as a comparison for the image detection outputs to evaluate accuracy. However, boundary masks with outlines needed to be generated in order to accurately compare these segmentation masks to edge detection outputs. To do this, an erosion operation was used to slightly shrink the objects in the segmentation masks. The eroded objects were subtracted from the original object to leave only the outer edges of labeled regions.
+  </p>
+  <p>
+    The image below shows an example of a boundary mask generated from a ground truth segmentation:
+  </p>
+
+  <img src="lane_boundary.png" alt="Boundary mask example" class="section-image">
+
+  <p>
+    Using these boundary masks, I computed evaluation metrics including precision, recall, F1 score, Intersection over Union (IoU), edge thickness, and runtime.
+  </p>
+
   <p>
     To evaluate the performance of Sobel, Canny, and Random Forest edge detection methods,
     multiple quantitative metrics were analyzed across three application domains: facial images,
