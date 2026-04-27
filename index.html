@@ -400,7 +400,7 @@
   <p class="caption">Figure: F1 Score comparison across application domains.</p>
 
   <p>
-  The F1 score combines precision and recall to evaluate how effectively each method detects correct edges while minimizing false positives and missed edges. Across all three application types, performance varied based on image complexity.
+  The F1 score combines precision and recall to evaluate how effectively each method detects correct edges while minimizing false positives and missed edges. Across all three application types, performance varied based on image complexity or application type.
   </p>
   
   <p>
@@ -408,7 +408,7 @@
   </p>
   
   <p>
-  Overall, Sobel achieved the highest F1 scores in two of the three applications, largely due to its ability to capture more edge pixels. However, this improvement is influenced by thicker edge outputs, which increase recall at the expense of precision.
+  Overall, Sobel achieved the highest F1 scores in two of the three applications. However, the differences in averages for each application reinforce how image complexity can quite easily effect edge detection accuracy. 
   </p>
 
   <!-- ================= IOU ================= -->
@@ -418,7 +418,7 @@
   <p class="caption">Figure: IoU comparison across application domains.</p>
 
   <p>
-  The Intersection over Union (IoU) metric measures the overlap between detected edges and the ground truth boundaries, providing a stricter evaluation of spatial accuracy.
+  The Intersection over Union (IoU) metric measures the overlap between detected edges and the pre-generated boundary masks, providing a stricter evaluation of spatial accuracy.
   </p>
   
   <p>
@@ -426,7 +426,7 @@
   </p>
   
   <p>
-  These results indicate that while Sobel captures more edge information, its thicker edges can reduce precise alignment with true boundaries. Canny’s thinner edges often result in slightly better spatial accuracy, particularly in more complex datasets like MRI.
+  These results, when considered alongside F1 results, indicate that sobel seems to be a reliable edge detection method accross multiple different image complexities. However, Canny may be more ideal for medical imaging applications instead of lane detection or facial recognition.
   </p>
 
   <!-- ================= PRECISION ================= -->
@@ -436,11 +436,11 @@
   <p class="caption">Figure: Precision comparison across application domains.</p>
 
   <p>
-  Precision measures the proportion of detected edges that are correct. Across all datasets, precision values were relatively low, indicating that many detected edges included false positives.
+  Precision measures the proportion of detected edges that are correct. Across all datasets, precision values were relatively low, indicating that there were many detected edges that were false positives.
   </p>
 
   <p>
-  Sobel consistently achieved the highest precision across facial (0.023) and lane (0.053) datasets, while Canny and Random Forest performed similarly in MRI images (~0.024). This suggests that Sobel’s stronger gradient detection helps identify relevant edges, though it may still include additional noise.
+  Sobel consistently achieved the highest precision across facial (0.023) and lane (0.053) datasets, while Canny and Random Forest both outperformed sobel and achieved scores of approximately 0.024. 
   </p>
 
   <!-- ================= RECALL ================= -->
@@ -450,11 +450,11 @@
   <p class="caption">Figure: Recall comparison across application domains.</p>
 
   <p>
-  Recall measures how many true edges were successfully detected. Sobel significantly outperformed other methods across all datasets, particularly in lane detection, where it achieved a recall of 0.787.
+  Recall measures how many true edges were successfully detected. Sobel significantly outperformed other methods across all datasets, particularly in lane detection, where it achieved a recall score of 0.787.
   </p>
   
   <p>
-  This indicates that Sobel is highly effective at capturing edge information but tends to detect more pixels as edges, contributing to thicker edge outputs. In contrast, Canny and Random Forest showed lower recall, reflecting their more conservative edge detection behavior.
+  This indicates that Sobel is highly effective at capturing edge information but tends to detect more pixels as edges, which causes thicker edge outputs. Canny and Random Forest, however, showed lower recall which reflects a more conservative edge detection behavior. 
   </p>
 
   <!-- ================= EDGE THICKNESS ================= -->
@@ -464,7 +464,7 @@
   <p class="caption">Figure: Edge thickness comparison across application domains.</p>
 
   <p>
-  Edge thickness measures how wide the detected edges are, providing insight into the level of detail captured by each method.
+  Edge thickness measures how wide the detected edges are, providing information on the level of detail captured by each method.
   </p>
   
   <p>
@@ -495,9 +495,7 @@
 
   <!-- ================= FINAL TAKEAWAY ================= -->
   <div class="callout">
-    <strong>Key Insight:</strong> Sobel performs best in structured environments like lane detection,
-    Canny provides the best balance of precision and efficiency, and Random Forest introduces
-    significant computational cost without substantial gains in performance.
+    <strong>Key Insight:</strong> Sobel seems to perform better in very structured environments like lane detection. However, Canny outperforms in medical imaging applications, like MRI image analysis, and seems to be a better option for very fine, thin, and sensitive edge detection techniques. Random Forest, while not significantly less accurate, introduces a significantly higher computational cost and longer run time. However, since Random Forest is a machine learning based method, models could potentially be extensively trained to outperform Canny and Sobel edge detection. 
   </div>
 
 </section>
@@ -505,7 +503,7 @@
     <section id="ideal-method">
       <h2>Is There an Ideal Method?</h2>
       <p>
-        There is no single ideal edge detection method for every situation. The best method depends on the type of image, the amount of noise, the level of detail needed, and the purpose of the analysis.
+        There is no single ideal edge detection method for every situation. The results show that both accuracy and efficiency vary depending on image complexity and application. Traditional methods like Sobel and Canny achieve similar levels of accuracy while maintaining significantly lower runtimes compared to the Random Forest-based approach, making them more practical and efficient choices for most edge detection tasks.
       </p>
       <p>
         Traditional methods like Sobel and Canny are useful when speed and simplicity are important, while machine learning approaches may be better when the task requires adaptation to complex image patterns.
@@ -515,10 +513,9 @@
     <section id="takeaways">
       <h2>Key Takeaways</h2>
       <p>
-        Feature extraction allows computers to transform raw image data into meaningful information. Edge detection is one important feature extraction method because it helps computers identify boundaries, shapes, and structures within images.
-      </p>
+        Edge detection is a key component of feature extraction, enabling computers to analyze complex images by identifying important structural boundaries. There are multiple approaches to edge detection, including both traditional methods and machine learning-based models. When evaluated on a limited dataset, traditional methods such as Sobel and Canny appear to outperform machine learning approaches like Random Forest in both accuracy and efficiency. However, a major advantage of machine learning models is their ability to improve with training and optimization. As computer-based image analysis becomes increasingly important, further development of machine learning methods may lead to higher accuracy and more efficient performance, making them valuable tools for future applications.
       <p>
-        By comparing Sobel, Canny, and Random Forest edge detection, we can better understand how different computer vision methods approach the challenge of teaching computers to see.
+        By comparing Sobel, Canny, and Random Forest edge detection, we can better understand how different computer vision methods approach the challenge of teaching computers to see, and how this ability can continue to be improved in the future.
       </p>
     </section>
     <section id="references">
