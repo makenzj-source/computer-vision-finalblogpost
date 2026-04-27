@@ -84,6 +84,43 @@
       margin-top: 30px;
     }
 
+    h4 {
+      font-size: 1.1rem;
+      color: #101820;
+      margin-top: 22px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-left: 4px solid #2f4858;
+      padding-left: 10px;
+    }
+
+    .step-list {
+      padding-left: 0;
+      list-style: none;
+      margin-top: 12px;
+    }
+
+    .step-list li {
+      margin-bottom: 16px;
+      padding-left: 1.2em;
+      text-indent: -1.2em;
+    }
+
+    ol.references {
+      padding-left: 22px;
+    }
+
+    ol.references li {
+      font-size: 0.97rem;
+      margin-bottom: 10px;
+      color: #374151;
+    }
+
+    ol.references a {
+      color: #2f4858;
+    }
+
     p {
       font-size: 1.05rem;
       margin-bottom: 18px;
@@ -173,7 +210,7 @@
     <a href="#methods">Edge Detection Methods</a>
     <a href="#applications">Comparing Methods</a>
     <a href="#takeaways">Takeaways</a>
-    <a href="#sources">Sources</a>
+    <a href="#references">References</a>
   </nav>
 
   <main>
@@ -225,26 +262,60 @@
     <section id="methods">
       <h2>Edge Detection Methods</h2>
 
-      <h3>Sobel Edge Detection</h3>
-      <p>
-        The Sobel method detects edges by measuring changes in image intensity in the horizontal and vertical directions. It is simple, fast, and useful for identifying broad edge structures.
-      </p>
-      <div class="image-placeholder">
-        Add Sobel output image here.
-      </div>
-
+      <!-- ── Canny ── -->
       <h3>Canny Edge Detection</h3>
       <p>
-        The Canny method uses multiple steps to reduce noise, identify intensity gradients, and keep only the strongest edges. This often produces cleaner and more defined edge maps than simpler methods.
+        The Canny operator, introduced by John Canny in 1986, remains a foundational multi-stage algorithm for edge detection. It is constructed around three explicit design objectives: achieving a high signal-to-noise ratio, ensuring good localization so that marked edges lie as close as possible to the actual intensity transitions, and guaranteeing a single response per true edge to avoid thick or doubled contours. For these reasons, it still serves as a common benchmark against which newer methods are evaluated. Typical applications range from lane detection and object recognition to general image segmentation.
       </p>
+
+      <h4>Steps</h4>
+      <ul class="step-list">
+        <li><strong>Noise reduction with a Gaussian filter.</strong> A Gaussian blur is applied first to suppress spurious intensity variations that would otherwise produce false edges. The smoothing kernel is often chosen as 5×5 with a standard deviation σ of around 1.4 and is normalized so that its elements sum to 1. Selecting σ involves a practical trade‑off: a small value retains fine detail but leaves some noise intact; a large value removes noise aggressively but can blur genuine edges.</li>
+        <li><strong>Gradient calculation.</strong> Sobel operators are then used to estimate intensity gradients in the horizontal and vertical directions. The G<sub>x</sub> kernel responds strongly to vertical edges, while G<sub>y</sub> captures horizontal edges. From these two filtered images, both the gradient magnitude (edge strength) and the gradient direction (edge orientation) are computed, typically at every pixel.</li>
+        <li><strong>Non‑maximum suppression.</strong> The raw gradient magnitude image often contains ridges several pixels wide around true edges. To thin these responses to a single‑pixel width, the algorithm first quantizes each pixel's gradient direction into one of four principal orientations (0°, 45°, 90°, or 135°). It then suppresses any pixel whose magnitude is not a local maximum compared with its two immediate neighbors along that direction. This step yields a much sharper edge map.</li>
+        <li><strong>Double thresholding.</strong> Two thresholds, a high and a low value, are applied to the suppressed gradient magnitudes. Pixels above the high threshold are classified directly as "strong" edges; those below the low threshold are discarded as non‑edges. Intermediate pixels form a "weak" class whose final status is determined in the next stage.</li>
+        <li><strong>Edge tracking by hysteresis.</strong> Weak pixels are retained only if they are connected—directly or through a chain of other weak pixels—to a strong edge pixel. Isolated weak fragments, which often arise from noise, are eliminated. This connectivity logic is what truly distinguishes Canny from simpler threshold‑based methods, allowing the algorithm to extend faint but genuine edge segments while clearing away scattered false positives.</li>
+      </ul>
+
       <div class="image-placeholder">
         Add Canny output image here.
       </div>
 
-      <h3>Random Forest Edge Detection</h3>
+      <!-- ── Sobel ── -->
+      <h3>Sobel Edge Detection</h3>
       <p>
-        A Random Forest approach uses machine learning to classify pixels or image regions based on learned features. Unlike traditional edge detection methods, it can be trained to identify edges based on patterns in example data.
+        The Sobel operator is a gradient‑based method that emphasizes regions of high spatial frequency through a pair of 3×3 convolution kernels. One kernel detects horizontal intensity changes, the other vertical changes, and the two are simply rotated versions of each other. While Sobel is computationally light and easy to implement, it is more susceptible to noise than Canny and does not inherently produce thin edges.
       </p>
+
+      <h4>Steps</h4>
+      <ul class="step-list">
+        <li><strong>Apply the two Sobel kernels.</strong> The image is convolved separately with the horizontal kernel G<sub>x</sub> and the vertical kernel G<sub>y</sub>. This yields two component images that measure intensity variation in each respective direction.</li>
+        <li><strong>Compute gradient magnitude.</strong> The two components are combined into a single edge‑strength map, classically via the Euclidean norm |G| = √(G<sub>x</sub>² + G<sub>y</sub>²). In practice, the approximation |G| ≈ |G<sub>x</sub>| + |G<sub>y</sub>| is often used because of its lower computational cost while still giving acceptable results.</li>
+        <li><strong>Compute gradient direction (optional).</strong> If edge orientation information is required, it can be obtained from θ = arctan(G<sub>y</sub> / G<sub>x</sub>). This step provides directional data that can be useful in later processing, though many applications do not need it.</li>
+        <li><strong>Threshold to extract edges.</strong> A threshold is applied to the magnitude image so that only pixels with sufficiently strong responses are marked as edges. Because the Sobel kernel itself introduces a small amount of perpendicular smoothing, the resulting edges are typically several pixels wide. A separate thinning operation must be applied if single‑pixel edges are desired. The main difficulty in practice is that on noisy images it is often impossible to find a single threshold that preserves all genuine edges while eliminating all noise responses—a limitation Canny was specifically designed to address.</li>
+      </ul>
+
+      <div class="image-placeholder">
+        Add Sobel output image here.
+      </div>
+
+      <!-- ── Random Forest ── -->
+      <h3>Random Forest</h3>
+      <p>
+        It should be noted at the outset that Random Forest is not an edge detection technique in the classical sense. Rather, it is a multi purpose learning algorithm for classification and regression on structured data. It can, however, be adapted for edge detection by training a model to classify individual pixels as "edge" or "non‑edge" based on local feature vectors (e.g., gradient, texture, and intensity statistics). In this sense, it represents a learned rather than a classical filtering approach. Its inclusion here serves to highlight that family of methods.
+      </p>
+      <p>
+        Random Forest is an ensemble method that aggregates the predictions of many independent decision trees. Each tree is built from a different bootstrap sample of the data, and at each split only a random subset of features is considered. The final output is obtained by majority vote (classification) or averaging (regression). The technique relies on bagging (bootstrap aggregating), not boosting, to reduce variance and improve generalization.
+      </p>
+
+      <h4>Steps</h4>
+      <ul class="step-list">
+        <li><strong>Bootstrap sampling (bagging).</strong> Multiple random samples are drawn from the original dataset with replacement. This means a given record may appear more than once in a sample while others are left out entirely. The procedure injects diversity among the trees and helps prevent any single tree from overfitting to the full dataset's peculiarities.</li>
+        <li><strong>Random feature selection at each split.</strong> When constructing a tree, the decision of how to split a node is made by searching over only a random subset of the available features. This prevents a few dominant features from dictating the structure of every tree and ensures that different trees learn to exploit different signals in the data.</li>
+        <li><strong>Train many decision trees in parallel.</strong> A separate decision tree is built from each bootstrap sample. Since the trees are generated independently, the process scales well with parallel computation. Approximately one‑third of the observations are left out of each bootstrap sample; these out‑of‑bag instances can serve as an internal validation set to estimate generalization performance without requiring a separate hold‑out partition.</li>
+        <li><strong>Aggregate the predictions.</strong> For classification tasks, the ensemble's output is the majority vote among all trees. For regression, it is the arithmetic mean of the individual tree predictions. This aggregation is what reduces variance and yields a model that is generally more accurate and more stable than any single decision tree.</li>
+      </ul>
+
       <div class="image-placeholder">
         Add Random Forest output image here.
       </div>
@@ -373,37 +444,23 @@
         By comparing Sobel, Canny, and Random Forest edge detection, we can better understand how different computer vision methods approach the challenge of teaching computers to see.
       </p>
     </section>
-
-      <section id="sources">
-    <h2>Sources</h2>
-    <hr>
-
-    <ul>
-        <li>
-            <a href="https://opencv.org/" target="_blank">
-                OpenCV Documentation – Edge Detection Methods
-            </a>
-        </li>
-        <li>
-            <a href="https://scikit-image.org/" target="_blank">
-                Scikit-Image Documentation
-            </a>
-        </li>
-        <li>
-            <a href="https://www.kaggle.com/datasets/ipythonx/celebamaskhq" target="_blank">
-                CelebAMask-HQ Dataset
-            </a>
-        </li>
-        <li>
-            <a href="https://www.kaggle.com/datasets/mehmetokuyar/line-segmentation" target="_blank">
-            Lane Detection Dataset (provided dataset)
-        </li>
-        <li>
-            <a href="http://preprocessed-connectomes-project.org/NFB_skullstripped/" target="_blank">
-            MRI Brain Imaging Dataset (provided dataset)
-        </li>
-    </ul>
-</section>
+    <section id="references">
+      <h2>References</h2>
+      <ol class="references">
+        <li>GeeksforGeeks. 2025. Implement Canny Edge Detector in Python using OpenCV. (July 31, 2025). Retrieved April 26, 2026 from <a href="https://www.geeksforgeeks.org/machine-learning/implement-canny-edge-detector-in-python-using-opencv/" target="_blank">https://www.geeksforgeeks.org/machine-learning/implement-canny-edge-detector-in-python-using-opencv/</a></li>
+        <li>OpenCV. Canny Edge Detection. OpenCV 4.x Documentation. Retrieved April 26, 2026 from <a href="https://docs.opencv.org/4.x/da/d22/tutorial_py_canny.html" target="_blank">https://docs.opencv.org/4.x/da/d22/tutorial_py_canny.html</a></li>
+        <li>Zargul Ansari. 2025. The Canny Edge Detector: Mathematical Foundations and Implementation of a Computer Vision Cornerstone. Medium. (May 11, 2025). Retrieved April 26, 2026 from <a href="https://medium.com/@zar_373/the-canny-edge-detector-mathematical-foundations-and-implementation-of-a-computer-vision-c47e83d6e792" target="_blank">https://medium.com/@zar_373/the-canny-edge-detector-mathematical-foundations-and-implementation-of-a-computer-vision-c47e83d6e792</a></li>
+        <li>GeeksforGeeks. Sobel Edge Detection vs. Canny Edge Detection in Computer Vision. Retrieved April 26, 2026 from <a href="https://www.geeksforgeeks.org/computer-vision/sobel-edge-detection-vs-canny-edge-detection-in-computer-vision/" target="_blank">https://www.geeksforgeeks.org/computer-vision/sobel-edge-detection-vs-canny-edge-detection-in-computer-vision/</a></li>
+        <li>R. Fisher, S. Perkins, A. Walker, and E. Wolfart. 2003. Sobel Edge Detector. Hypermedia Image Processing Reference (HIPR2), University of Edinburgh. Retrieved April 26, 2026 from <a href="https://homepages.inf.ed.ac.uk/rbf/HIPR2/sobel.htm" target="_blank">https://homepages.inf.ed.ac.uk/rbf/HIPR2/sobel.htm</a></li>
+        <li>GeeksforGeeks. 2025. Random Forest Algorithm in Machine Learning. (December 23, 2025). Retrieved April 26, 2026 from <a href="https://www.geeksforgeeks.org/machine-learning/random-forest-algorithm-in-machine-learning/" target="_blank">https://www.geeksforgeeks.org/machine-learning/random-forest-algorithm-in-machine-learning/</a></li>
+        <li>Mayur Kulkarni. 2026. Random Forest Algorithm in Machine Learning: Explained with Use Cases. Xoriant Blog. (February 24, 2026). Retrieved April 26, 2026 from <a href="https://www.xoriant.com/blog/random-forest-algorithm" target="_blank">https://www.xoriant.com/blog/random-forest-algorithm</a></li>
+        <li>OpenCV Documentation – Edge Detection Methods. Retrieved from <a href="https://opencv.org/" target="_blank">https://opencv.org/</a></li>
+        <li>Scikit-Image Documentation. Retrieved from <a href="https://scikit-image.org/" target="_blank">https://scikit-image.org/</a></li>
+        <li>CelebAMask-HQ Dataset. Retrieved from <a href="https://www.kaggle.com/datasets/ipythonx/celebamaskhq" target="_blank">https://www.kaggle.com/datasets/ipythonx/celebamaskhq</a></li>
+        <li>Lane Detection Dataset (provided dataset). Retrieved from <a href="https://www.kaggle.com/datasets/mehmetokuyar/line-segmentation" target="_blank">https://www.kaggle.com/datasets/mehmetokuyar/line-segmentation</a></li>
+        <li>MRI Brain Imaging Dataset (provided dataset). Retrieved from <a href="http://preprocessed-connectomes-project.org/NFB_skullstripped/" target="_blank">http://preprocessed-connectomes-project.org/NFB_skullstripped/</a></li>
+      </ol>
+    </section>
   </main>
 
 
