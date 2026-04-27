@@ -352,20 +352,38 @@
     Three different datasets with images and pre-generated segmentation masks were collected for the needed applications. The segmentation masks provided in these datasets were fully filled masks, meaning the entire region of the object was filled in. These segmentation masks were used as a comparison for the image detection outputs to evaluate accuracy. However, boundary masks with outlines needed to be generated in order to accurately compare these segmentation masks to edge detection outputs. To do this, an erosion operation was used to slightly shrink the objects in the segmentation masks. The eroded objects were subtracted from the original object to leave only the outer edges of labeled regions.
   </p>
   <p>
-    The image below shows an example of a boundary mask generated from a ground truth segmentation:
+    The image below shows an example of a boundary mask generated from a filled in segmentation mask:
   </p>
 
   <img src="lane_boundary.png" alt="Boundary mask example" class="section-image">
 
   <p>
-    Using these boundary masks, I computed evaluation metrics including precision, recall, F1 score, Intersection over Union (IoU), edge thickness, and runtime.
+    Next, the three chosen edge detection methods were applied to the original images from the dataset. This produced an edge map for each image which was then compared to the pre-generated boundary masks. These two images were compared pixel-by-pixel to evaluate accuracy and efficiency. 
+  </p>
+    <p>
+    The following evaluations were performed: 
+  </p>
+    <p>
+    Precision Evaluation: How many detected edges were correct? Were there false positives?
+  </p>
+    <p>
+    Recall Evaluation: How many edges were correctly detected? Were any edges missed?
+  </p>
+    <p>
+    F1 Score Evaluation: How well did the method correctly detect true edges and avoid false positives?
+  </p>
+    <p>
+    Intersection over Union (IoU) Evaluation: How much overlap was there between the predicted edges and the original boundary mask?
+  </p>
+    <p>
+    Edge Thickness Evaluation: How clean are the predicted edges? Are they thin and clean? Or messy and thick?
+  </p>
+    <p>
+    Run Time Evaluation: How long did each method take in milliseconds? 
   </p>
 
   <p>
-    To evaluate the performance of Sobel, Canny, and Random Forest edge detection methods,
-    multiple quantitative metrics were analyzed across three application domains: facial images,
-    lane detection, and MRI scans. These metrics include F1 score, IoU, precision, recall,
-    edge thickness, and runtime.
+    Results from these evaluations were put into an excel spreadsheet and bar graphs were generated for analysis and discussion.
   </p>
 
   <!-- ================= F1 SCORE ================= -->
