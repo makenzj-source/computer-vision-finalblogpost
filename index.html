@@ -260,29 +260,98 @@
     </section>
 
     <section id="comparison">
-      <h2>Method Comparison and Analysis</h2>
-      <p>
-        Each method has its own strengths and weaknesses. Comparing Sobel, Canny, and Random Forest edge detection helps show how different approaches perform across different types of images.
-      </p>
+  <h2>Method Comparison and Analysis</h2>
 
-      <div class="comparison-grid">
-        <div class="card">
-          <h3>Sobel</h3>
-          <p><strong>Strength:</strong> Simple and fast.</p>
-          <p><strong>Limitation:</strong> More sensitive to noise and less precise.</p>
-        </div>
-        <div class="card">
-          <h3>Canny</h3>
-          <p><strong>Strength:</strong> Produces cleaner and more defined edges.</p>
-          <p><strong>Limitation:</strong> Requires parameter tuning.</p>
-        </div>
-        <div class="card">
-          <h3>Random Forest</h3>
-          <p><strong>Strength:</strong> Can learn patterns from data.</p>
-          <p><strong>Limitation:</strong> Requires training data and more computation.</p>
-        </div>
-      </div>
-    </section>
+  <p>
+    To evaluate the performance of Sobel, Canny, and Random Forest edge detection methods,
+    multiple quantitative metrics were analyzed across three application domains: facial images,
+    lane detection, and MRI scans. These metrics include F1 score, IoU, precision, recall,
+    edge thickness, and runtime.
+  </p>
+
+  <!-- ================= F1 SCORE ================= -->
+  <h3>Overall Performance (F1 Score)</h3>
+
+  <img src="f1_AvgScores.png" alt="F1 Score Comparison" style="width:100%; border-radius:10px;">
+  <p class="caption">Figure: F1 Score comparison across application domains.</p>
+
+  <p>
+    The F1 score provides a balance between precision and recall. Across all application types,
+    Sobel achieved the strongest performance in lane detection, while all methods struggled
+    with facial and MRI datasets. This suggests that traditional edge detection methods perform
+    best in structured environments with clearly defined edges.
+  </p>
+
+  <!-- ================= IOU ================= -->
+  <h3>Spatial Accuracy (IoU)</h3>
+
+  <img src="IoUscores.png" alt="IoU Comparison" style="width:100%; border-radius:10px;">
+  <p class="caption">Figure: IoU comparison across application domains.</p>
+
+  <p>
+    IoU results follow similar trends to the F1 score, confirming that Sobel performs best
+    for lane detection. However, all methods show low overlap with ground truth masks in
+    facial and MRI datasets, highlighting the difficulty of capturing precise boundaries
+    in more complex images.
+  </p>
+
+  <!-- ================= PRECISION ================= -->
+  <h3>Precision</h3>
+
+  <img src="precisionscores.png" alt="Precision Comparison" style="width:100%; border-radius:10px;">
+  <p class="caption">Figure: Precision comparison across application domains.</p>
+
+  <p>
+    Precision remains relatively low across all datasets, indicating that many detected edges
+    are false positives. This is expected, as traditional edge detection methods respond to
+    intensity changes rather than true semantic boundaries.
+  </p>
+
+  <!-- ================= RECALL ================= -->
+  <h3>Recall</h3>
+
+  <img src="recallscore.png" alt="Recall Comparison" style="width:100%; border-radius:10px;">
+  <p class="caption">Figure: Recall comparison across application domains.</p>
+
+  <p>
+    Recall is significantly higher for lane detection, especially with the Sobel method,
+    meaning most true edges are successfully detected. However, recall is much lower for
+    facial and MRI datasets due to increased complexity and noise.
+  </p>
+
+  <!-- ================= EDGE THICKNESS ================= -->
+  <h3>Edge Thickness Analysis</h3>
+
+  <img src="edgethickness.png" alt="Edge Thickness Comparison" style="width:100%; border-radius:10px;">
+  <p class="caption">Figure: Edge thickness comparison across application domains.</p>
+
+  <p>
+    Edge thickness varies significantly between methods. Sobel produces thicker edges,
+    which can improve recall but reduce precision. Canny produces thinner, more refined
+    edges, making it better for applications requiring precise boundary detection.
+  </p>
+
+  <!-- ================= RUNTIME ================= -->
+  <h3>Computational Efficiency (Runtime)</h3>
+
+  <img src="runtime.png" alt="Runtime Comparison" style="width:100%; border-radius:10px;">
+  <p class="caption">Figure: Runtime comparison across application domains.</p>
+
+  <p>
+    Runtime analysis reveals a major tradeoff. Random Forest methods are significantly slower
+    than Sobel and Canny, while offering only modest performance improvements. Canny provides
+    the best balance between speed and edge quality, making it more suitable for real-time
+    applications.
+  </p>
+
+  <!-- ================= FINAL TAKEAWAY ================= -->
+  <div class="callout">
+    <strong>Key Insight:</strong> Sobel performs best in structured environments like lane detection,
+    Canny provides the best balance of precision and efficiency, and Random Forest introduces
+    significant computational cost without substantial gains in performance.
+  </div>
+
+</section>
 
     <section id="ideal-method">
       <h2>Is There an Ideal Method?</h2>
