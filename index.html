@@ -336,6 +336,9 @@
       <p>
         In each of these applications, edge detection helps reduce complex visual data into simpler structural information that can be used for further analysis.
       </p>
+      <p>
+        Edge detection has a multitude of real-world usage, as it extracts structure from raw images. In today age, it is seen commonly in autonomous driving and advanced driver assistance systems, such as in Tesla and Polestar systems. Canny is a common choice because it delivers edges that are clean and well localized for road scenarios with high contrast without requiring training data, meaning it is perfect for real-time usage. It is also commonly used in medical imaging, particularly for MRI analysis; it relies on edge maps to highlight tissue boundaries and anatomical features for doctors to make diagnosis's. In medical imagining scenarios, noise robustness becomes especially crucial, which is why a model like Random Forest can justify its extended runtime and resource usage. The same correlation between speed and accuracy occurs in face recognition as well, where systems like Apple's Face ID use Canny for quick detection and reserve learned methods for the final verification steps in processes where precision matters more than speed. Beyond these examples, edge detection supports satellite and remote sensing pipelines that map roads and railways, document scanning, optical recognition, robotic vision, industrial quality inspection, and virtually any object detection or tracking framework. In practice, the tradeoffs among accuracy, noise robustness, and runtime are what steer the selection among different techniques for a given application.
+      </p>
     </section>
 
     <section id="comparison">
